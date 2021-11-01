@@ -3,15 +3,16 @@ The following are the solutions to the [SQLZOO Tutorial](http://sqlzoo.net/wiki/
 
 
 ## Sections:
-1. [SELECT basics](#SELECT-basics)
-<!-- 2. [SELECT from WORLD](#select-from-world)
-3. [SELECT from NOBEL](#select-from-nobel)
-4. [SELECT in SELECT](#select-in-select)
-5. [SUM and COUNT](#sum-and-count)
-6. [JOIN](#join)
-7. [More JOIN](#more-join)
-8. [Using NULL](#using-null)
-9. [Self JOIN](#self-join) -->
+1. [SELECT-basics](#SELECT-basics)
+2. [SELECT-names](#SELECT-names)
+3. [SELECT-from-WORLD](#SELECT-from-WORLD)
+<!-- 3. [SELECT from NOBEL](#select-from-nobel) -->
+<!-- 4. [SELECT in SELECT](#select-in-select) -->
+<!-- 5. [SUM and COUNT](#sum-and-count) -->
+<!-- 6. [JOIN](#join) -->
+<!-- 7. [More JOIN](#more-join) -->
+<!-- 8. [Using NULL](#using-null) -->
+<!-- 9. [Self JOIN](#self-join) -->
 
 
 ## SELECT-basics
@@ -95,6 +96,7 @@ ORDER BY name
 ```
   
    (Harder Questions)
+   
  11.
  ```sql
    SELECT name
@@ -120,12 +122,16 @@ ORDER BY name
    SELECT capital,name  FROM world WHERE capital LIKE concat('%',name,'%') and length(capital)>length(name)
 ```
   
-<!--  15.
+ 15.
  ```sql
-   SELECT name FROM world
-  WHERE name LIKE '%x%'
+   SELECT name, REPLACE( capital, name, '') as 'ext'
+FROM world
+WHERE capital LIKE concat('%',name,'%') and length(capital)>length(name)
 ```
-  
+
+## SELECT from WORLD
+
+  <!-- 
  16.
  ```sql
    SELECT name FROM world
