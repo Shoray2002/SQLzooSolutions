@@ -6,8 +6,8 @@ The following are the solutions to the [SQLZOO Tutorial](http://sqlzoo.net/wiki/
 1. [SELECT-basics](#SELECT-basics)
 2. [SELECT-names](#SELECT-names)
 3. [SELECT-from-WORLD](#SELECT-from-WORLD)
-3. [SELECT-from-NOBEL](#SELECT-from-nobel)
-4.[SELECT-within-SELECT](#SELECT-within-SELECT)
+4. [SELECT-from-NOBEL](#SELECT-from-nobel)
+5. [SELECT-within-SELECT](#SELECT-within-SELECT)
 <!-- 4. [SELECT in SELECT](#select-in-select) -->
 <!-- 5. [SUM and COUNT](#sum-and-count) -->
 <!-- 6. [JOIN](#join) -->
