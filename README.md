@@ -7,6 +7,7 @@ The following are the solutions to the [SQLZOO Tutorial](http://sqlzoo.net/wiki/
 2. [SELECT-names](#SELECT-names)
 3. [SELECT-from-WORLD](#SELECT-from-WORLD)
 3. [SELECT-from-NOBEL](#SELECT-from-nobel)
+4.[SELECT-within-SELECT](#SELECT-within-SELECT)
 <!-- 4. [SELECT in SELECT](#select-in-select) -->
 <!-- 5. [SUM and COUNT](#sum-and-count) -->
 <!-- 6. [JOIN](#join) -->
@@ -128,7 +129,6 @@ ORDER BY name
 FROM world
 WHERE capital LIKE concat('%',name,'%') and length(capital)>length(name)
 ```
-
 ## SELECT from WORLD
 
   
@@ -197,11 +197,98 @@ WHERE name LIKE '%a%' AND name LIKE '%e%' AND name LIKE '%i%' AND name LIKE '%o%
 ```
 
 ## SELECT-from-nobel
-<!-- 
-5.
+
+1.
  ```sql
-   SELECT name FROM world
-  WHERE name LIKE '%x%'
+   SELECT yr, subject, winner
+  FROM nobel
+ WHERE yr = 1950
 ```
 
+2.
+ ```sql
+   SELECT winner
+  FROM nobel
+ WHERE yr = 1962
+   AND subject = 'Literature'
+```
+3.
+ ```sql
+   SELECT yr,subject 
+  FROM nobel
+WHERE winner='Albert Einstein' 
+```
+4.
+ ```sql
+   SELECT winner
+  FROM nobel
+ WHERE yr >= 2000
+   AND subject = 'Peace'
+```
+5.
+ ```sql
+  SELECT yr, subject, winner
+  FROM nobel
+ WHERE yr>=1980 AND yr <= 1989  AND subject = 'Literature'
+```
+6.
+ ```sql
+   SELECT * FROM nobel
+ WHERE winner IN ('Theodore Roosevelt',
+                  'Woodrow Wilson',
+                  'Jimmy Carter','Barack Obama')
+```
+7.
+ ```sql
+   SELECT winner
+  FROM nobel
+ WHERE winner LIKE 'John%'
+```
+8.
+ ```sql
+   SELECT yr, subject, winner
+  FROM nobel
+ WHERE (yr=1980 AND subject = 'Physics') OR (yr=1984 AND subject = 'Chemistry')
+```
+9.
+ ```sql
+   SELECT yr, subject, winner
+  FROM nobel
+ WHERE yr=1980 AND  subject <> 'Medicine' AND subject <> 'Chemistry'
+```
 
+10.
+ ```sql
+   SELECT yr, subject, winner
+  FROM nobel
+ WHERE (yr<1910 AND  subject='Medicine') OR (yr>=2004 AND subject='Literature')
+```
+11.
+ ```sql
+   SELECT *
+  FROM nobel
+ WHERE winner ='Peter Grünberg'
+```
+12.
+ ```sql
+   SELECT *
+  FROM nobel
+ WHERE winner = "Eugene O'Neill"
+```
+13.
+ ```sql
+  SELECT winner, yr, subject
+FROM nobel 
+WHERE winner LIKE 'Sir%'
+ORDER BY yr DESC, winner
+
+```
+14.
+ ```sql
+   select winner, subject
+from nobel
+where yr=1984 
+order by subject in ('Physics','Chemistry'),subject,winner
+```
+
+## SELECT-within-SELECT
