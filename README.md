@@ -358,15 +358,15 @@ SELECT continent, name FROM world x
 
 <!-- 9.
  ```sql
-   select winner, subject
-from nobel
-where yr=1984 
-order by subject in ('Physics','Chemistry'),subject,winner
+   SELECT name, continent, population FROM world x
+  WHERE 25000000>= ALL(SELECT population FROM world y WHERE x.continent=y.continent AND y.population>0) 
 ```
 10.
  ```sql
-   select winner, subject
-from nobel
-where yr=1984 
-order by subject in ('Physics','Chemistry'),subject,winner
+   SELECT name, continent FROM world x WHERE
+ population > ALL
+ (SELECT population*3 FROM world y
+ WHERE y.continent = x.continent
+ AND y.name != x.name)
+
 ``` -->
