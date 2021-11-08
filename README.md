@@ -292,3 +292,81 @@ order by subject in ('Physics','Chemistry'),subject,winner
 ```
 
 ## SELECT-within-SELECT
+1.
+ ```sql
+   SELECT name FROM world
+  WHERE population >
+     (SELECT population FROM world
+      WHERE name='Russia')
+```
+2.
+ ```sql
+   SELECT name FROM world
+  WHERE gdp/population >
+     (SELECT gdp/population FROM world
+      WHERE name='United Kingdom') AND continent='Europe'
+```
+3.
+ ```sql
+   SELECT name,continent FROM world
+  WHERE continent =
+     (SELECT continent FROM world
+      WHERE name='Argentina' ) OR continent = (SELECT continent FROM world
+      WHERE name='Australia')
+ORDER BY name 
+```
+4.
+ ```sql
+   SELECT name,population FROM world
+  WHERE population>
+     (SELECT population FROM world
+      WHERE name='canada' ) AND population<
+     (SELECT population FROM world
+      WHERE name='poland' )
+ORDER BY name 
+```
+5.
+ ```sql
+   SELECT name,CONCAT(ROUND(population/(SELECT population FROM world
+      WHERE name='germany')*100),'%') AS percentage FROM world
+WHERE continent='Europe'
+
+```
+
+6.
+ ```sql
+   SELECT name FROM world
+  WHERE gdp>
+     ALL(SELECT gdp FROM world
+      WHERE gdp>0 AND continent='Europe')
+```
+7.
+ ```sql
+  SELECT continent, name, area FROM world x
+  WHERE area >= ALL
+    (SELECT area FROM world y
+        WHERE y.continent=x.continent
+          AND area>0)
+```
+8.
+ ```sql
+SELECT continent, name FROM world x
+  WHERE area >= ALL
+    (SELECT name FROM world y
+        WHERE y.continent=x.continent)
+```
+
+<!-- 9.
+ ```sql
+   select winner, subject
+from nobel
+where yr=1984 
+order by subject in ('Physics','Chemistry'),subject,winner
+```
+10.
+ ```sql
+   select winner, subject
+from nobel
+where yr=1984 
+order by subject in ('Physics','Chemistry'),subject,winner
+``` -->
