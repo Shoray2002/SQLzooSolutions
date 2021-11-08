@@ -356,7 +356,7 @@ SELECT continent, name FROM world x
         WHERE y.continent=x.continent)
 ```
 
-<!-- 9.
+ 9.
  ```sql
    SELECT name, continent, population FROM world x
   WHERE 25000000>= ALL(SELECT population FROM world y WHERE x.continent=y.continent AND y.population>0) 
@@ -369,4 +369,4 @@ SELECT continent, name FROM world x
  WHERE y.continent = x.continent
  AND y.name != x.name)
 
-``` -->
+```
